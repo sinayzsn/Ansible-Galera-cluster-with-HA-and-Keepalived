@@ -1,0 +1,20 @@
+---
+- name: Install HAproxy
+  apt:
+    name: haproxy
+    state: present
+  when: ansible_os_family == "Debian"
+- name: Enable HAproxy directoriesa are present
+  file: path={{ item }} state=directory
+  with_items:
+    - "/etc/haproxy"
+    - "/var/lib/haproxy"
+- name: Esure that HAproxy files are copied to the correct location
+  template:
+    src: templates/haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+- name: Ensure haproxy is started
+  service:
+    name: haproxy 
+    state: started
+    enabled: yes

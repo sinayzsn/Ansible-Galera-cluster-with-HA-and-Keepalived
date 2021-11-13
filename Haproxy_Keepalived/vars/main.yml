@@ -1,0 +1,21 @@
+---
+# Keepalived config
+keepalived_bind_interface: ens160
+keepalived_vip: 172.20.92.137
+
+# HAProxy setting
+haproxy_bind_address: 172.20.92.137
+haproxy_balancing_servers:
+  - { name: 's1', ip: "172.20.92.135" }
+  - { name: 's2', ip: "172.20.92.136" }
+
+# Galera IP addresses
+galera_servers:
+  - {name: 'node-1',ip: "172.20.92.132"}
+  - {name: 'node-2',ip: "172.20.92.133"}
+  - {name: 'node-3',ip: "172.20.92.134"}
+# Another I have tested and did not work
+# galera_servers:
+#   - {ip1: "172.20.92.132"}
+#   - {ip2: "172.20.92.133"}
+#   - {ip3: "172.20.92.134"}

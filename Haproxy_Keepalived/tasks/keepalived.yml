@@ -1,0 +1,27 @@
+---
+# - name: Install Keepalived on yum based
+#   yum:
+#     name: keepalived
+#     state: present
+
+- name: Ensure keepalived is installed
+  apt: 
+    name: keepalived
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Ensure keepalived conf is set
+  template:
+    src: templates/keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+
+# - name: restart keepalived
+#   service:
+#     name: keepalived
+#     state: restarted
+
+- name: Ensure keepalived is started
+  service:
+    name: keepalived
+    state: started
+    enabled: yes

@@ -1,0 +1,3 @@
+[haproxy] 
+172.20.91.123 keepalived_priority=100
+172.20.91.133 keepalived_priority=101
