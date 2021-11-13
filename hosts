@@ -1,0 +1,13 @@
+[galera]
+172.20.92.132
+172.20.92.133
+172.20.92.134
+
+[galera-cluster-nodes]
+172.20.92.132
+172.20.92.133
+172.20.92.134
+
+[haproxy]
+172.20.91.123 keepalived_priority=100
+172.20.91.133 keepalived_priority=101
