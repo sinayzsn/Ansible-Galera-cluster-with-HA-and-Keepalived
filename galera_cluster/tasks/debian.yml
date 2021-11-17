@@ -1,0 +1,92 @@
+---
+- name: debian | update package list
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  become: true
+
+- name: debian | installing pre-reqs
+  apt:
+    name: "{{ mariadb_pre_req_packages }}"
+    state: "present"
+  become: true
+  loop:
+
+- name: debian | adding MariaDB Repo Keys
+  apt_key:
+    keyserver: "{{ mariadb_debian_repo_keyserver }}"
+    id: "{{ mariadb_debian_repo_key }}"
+    state: "present"
+  become: true
+  when: galera_enable_mariadb_repo|bool and not mariadb_debian_repo_key_url is defined
+  
+- name: debian | adding MariaDB Repo Keys
+  apt_key:
+    url: "{{ mariadb_debian_repo_key_url }}"
+    state: "present"
+  become: true
+  when: galera_enable_mariadb_repo|bool and mariadb_debian_repo_key_url is defined
+
+- name: debian | pinning MariaDB Repo
+  template:
+    src: "etc/apt/preferences.d/mariadb.j2"
+    dest: "/etc/apt/preferences.d/mariadb"
+    mode: '0644'
+  become: true
+  when: galera_enable_mariadb_repo|bool
+
+- name: debian | adding mariadb repo
+  apt_repository:
+    repo: "{{ mariadb_debian_repo }}"
+    state: "present"
+  become: true
+  when: galera_enable_mariadb_repo|bool
+
+- name: debian | precreate /etc/mysql/conf.d in case we need to add mariadb_config_overrides file
+  file:
+    path: "/etc/mysql/conf.d"
+    state: "directory"
+    mode: 0755
+    recurse: true
+  become: true
+  changed_when: false
+  when: mariadb_config_overrides is defined
+
+- name: debian | add an overrides file
+  template:
+    src: "etc/mariadb_overrides.cnf.j2"
+    dest: "/etc/mysql/conf.d/overrides.cnf"
+    mode: '0644'
+  become: true
+  when: mariadb_config_overrides is defined
+
+- name: debian | configuring root my.cnf
+  template:
+    src: "root/my.cnf.j2"
+    dest: "/root/.my.cnf"
+    owner: "root"
+    group: "root"
+    mode: "u=rw,g=,o="
+  no_log: true
+  become: true
+
+- name: debian | mysql root password setting
+  debconf:
+    name: "mariadb-server-{{ mariadb_version }}"
+    question: "{{ item.question }}"
+    value: "{{ item.value }}"
+    vtype: "password"
+  become: true
+  changed_when: false
+  no_log: true
+  with_items:
+    - question: "mysql-server/root_password"
+      value: "{{ mariadb_mysql_root_password }}"
+    - question: "mysql-server/root_password_again"
+      value: "{{ mariadb_mysql_root_password }}"
+
+- name: debian | installing mariadb-galera packages
+  apt:
+    name: "{{ (galera_sst_method == 'mariabackup') | ternary( mariadb_packages | union( mariabackup_packages ), mariadb_packages ) }}"
+    state: "present"
+  become: true
