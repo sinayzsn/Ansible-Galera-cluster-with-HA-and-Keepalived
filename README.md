@@ -3,6 +3,10 @@
  HA is about managing and not having one single point of faliure,
  and Keepalived is about puting a floating IP between the HA nodes.
  
+ ### Note:
+  Keep in mind that the galera cluster works with ansible 2.9.6 (This what I have tested
+  with) nad does not work with higher versions of ansible.
+ 
  ## How to use it
   First you must install the requirements with the use of the command below,
   after that you need to change th variables in the vars folder of each playbook.
