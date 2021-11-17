@@ -4,7 +4,7 @@
  and Keepalived is about puting a floating IP between the HA nodes.
  
  ### Note:
-  Keep in mind that the galera cluster works with ansible 2.9.6 (This what I have tested
+  Keep in mind that the galera cluster works with `ansible 2.9.6` (This what I have tested
   with) nad does not work with higher versions of ansible.
  
  ## How to use it
