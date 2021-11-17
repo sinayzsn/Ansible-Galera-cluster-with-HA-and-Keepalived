@@ -4,7 +4,7 @@
     name: haproxy
     state: present
   when: ansible_os_family == "Debian"
-- name: Enable HAproxy directoriesa are present
+- name: Ensure HAproxy directories are present
   file: path={{ item }} state=directory
   with_items:
     - "/etc/haproxy"

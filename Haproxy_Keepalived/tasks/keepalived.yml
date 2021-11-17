@@ -3,6 +3,7 @@
 #   yum:
 #     name: keepalived
 #     state: present
+#   when: ansible_os_family == "redhat"
 
 - name: Ensure keepalived is installed
   apt: 

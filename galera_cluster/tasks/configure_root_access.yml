@@ -23,30 +23,29 @@
   retries: 6
   delay: 5
   with_items:
-    - "{{ ansible_hostname }}"
+    # - "{{ ansible_hostname }}"
     - "127.0.0.1"
     - "::1"
     - "localhost"
-    - '{{ haproxy_host_1 }}'
-    - '{{ haproxy_host_2 }}'
+    - '{{ mariadb_mysql_ha_hosts }}'
   tags:
     - updating_root_passwords
 
-- name: configure_root_access | updating root passwords (allow from anywhere)
-  mysql_user:
-    # host: "{{ item }}"
-    host: " {{ mariadb_mysql_ha_hosts }}"
-    login_unix_socket: "{{ mariadb_login_unix_socket }}"
-    name: "root"
-    password: "{{ mariadb_mysql_root_password }}"
-    priv: "*.*:ALL,GRANT"
-  become: true
-  no_log: true
-  run_once: true
-  retries: 6
-  delay: 5
-  # with_items:
-  #   - "%"
-  when: galera_allow_root_from_any|bool
-  tags:
-    - updating_root_passwords
+# - name: configure_root_access | updating root passwords (allow from anywhere)
+#   mysql_user:
+#     # host: "{{ item }}"
+#     host: " {{ mariadb_mysql_ha_hosts }}"
+#     login_unix_socket: "{{ mariadb_login_unix_socket }}"
+#     name: "root"
+#     password: "{{ mariadb_mysql_root_password }}"
+#     priv: "*.*:ALL,GRANT"
+#   become: true
+#   no_log: true
+#   run_once: true
+#   retries: 6
+#   delay: 5
+#   with_items:
+#     - "%"
+#   when: galera_allow_root_from_any|bool
+#   tags:
+#     - updating_root_passwords
