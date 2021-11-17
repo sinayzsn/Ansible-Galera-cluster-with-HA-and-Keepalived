@@ -4,7 +4,11 @@
  and Keepalived is about puting a floating IP between the HA nodes.
  
  ## How to use it
-  First you need to change th variables in the vars folder of each playbook
+  First you must install the requirements with the use of the command below,
+  after that you need to change th variables in the vars folder of each playbook.
+  ```
+  ansible-galaxy install -r requirements.txt
+  ```
  #### Note: 
  this playbook are created with two seperate playbook, HA and Keepalived
  was created by me with the help of other playbooks and the other was originaly 
