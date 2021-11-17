@@ -7,7 +7,7 @@
   First you must install the requirements with the use of the command below,
   after that you need to change th variables in the vars folder of each playbook.
   ```
-  ansible-galaxy install -r requirements.txt
+  ansible-galaxy install -r requirements.yml
   ```
  #### Note: 
  this playbook are created with two seperate playbook, HA and Keepalived
