@@ -3,9 +3,9 @@
 - name: Deploy Galera
   hosts: galera-cluster-nodes
   tasks:
-    - name: Include ansible-mariadb-galera-cluster
+    - name: Include galera_cluster
       include_role:
-        name: ansible-mariadb-galera-cluster
+        name: galera_cluster
 
 # Deploy HA and Keedalived using the main.yml file in directory
 - name: Deploy HA and Keedalived

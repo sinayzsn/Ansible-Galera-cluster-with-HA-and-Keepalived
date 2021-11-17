@@ -30,8 +30,8 @@ mariadb_mysql_port: 3306
 # CHANGE_HERE
 mariadb_mysql_root_password: "root"
 mariadb_mysql_ha_hosts:
-  - "172.20.92.135"
-  - "172.20.92.136"
+  - "192.168.2.5"
+  - "192.168.2.6"
 
 # Define mysql mem multiplier (used to calculate key_buffer_size)
 mariadb_mysql_mem_multiplier: .25
