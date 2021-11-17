@@ -34,7 +34,7 @@ host file and make sure that every IP addressses is the right place to install.
 
 ## Deploy it
 All you need to do in order to deploy both of them after you have changed the variables
-is run this command.
+is to run this command.
 ```
 ansible-playbook -i hosts Deploy.yml
 ```
