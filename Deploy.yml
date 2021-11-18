@@ -10,6 +10,6 @@
 # Deploy HA and Keedalived using the main.yml file in directory
 - name: Deploy HA and Keedalived
   hosts: haproxy
-  import_tasks: Haproxy_Keepalived/deploy.yaml
+  include_tasks: Haproxy_Keepalived/deploy.yaml
   
   
