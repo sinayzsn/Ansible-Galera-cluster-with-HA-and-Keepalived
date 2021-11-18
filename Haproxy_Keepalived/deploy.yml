@@ -1,6 +1,6 @@
 ---
 
-- name: Start
+- name: Deploy HA and Keedalived
   vars_files:
     - vars/main.yml
   tasks:
