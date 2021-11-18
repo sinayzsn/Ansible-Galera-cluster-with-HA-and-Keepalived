@@ -1,4 +1,7 @@
 ---
+
+- tasks:
+    - include: tasks/main.yml
 - name: Deploy HA and Keedalived
   tasks:
     - include: tasks/main.yml
