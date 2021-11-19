@@ -1,7 +1,6 @@
 ---
 - name: Deploy HA and Keedalived
-  tasks:
-  - include_tasks: tasks/haproxy.yml
-  - include_tasks: tasks/keepalived.yml
-  vars_files:
-    - vars/main.yml
+  include: tasks/main.yml
+  
+- name: Include the var file
+  include_vars: file='vars/main.yml'

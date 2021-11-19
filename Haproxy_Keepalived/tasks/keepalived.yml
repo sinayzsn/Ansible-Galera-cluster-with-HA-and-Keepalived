@@ -16,11 +16,6 @@
     src: templates/keepalived.conf.j2
     dest: /etc/keepalived/keepalived.conf
 
-# - name: restart keepalived
-#   service:
-#     name: keepalived
-#     state: restarted
-
 - name: Ensure keepalived is started
   service:
     name: keepalived
