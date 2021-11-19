@@ -1,6 +1,7 @@
 ---
-- name: Deploy HA and Keedalived
-  include: tasks/main.yml
-  
 - name: Include the var file
   include_vars: file='vars/main.yml'
+
+- name: Deploy HA and Keedalived
+  include: tasks/main.yml
+
