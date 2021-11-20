@@ -13,7 +13,7 @@
 
 - name: Ensure keepalived conf is set
   template:
-    src: templates/keepalived.conf.j2
+    src: ../templates/keepalived.conf.j2
     dest: /etc/keepalived/keepalived.conf
 
 - name: Ensure keepalived is started

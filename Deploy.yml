@@ -8,8 +8,9 @@
         name: galera_cluster
 
 # Deploy HA and Keedalived using the main.yml file in directory
-- name: Deploy HA and Keedalived
-  hosts: haproxy
-  include: Haproxy_Keepalived/deploy.yaml
+- hosts: haproxy
+  tasks:
+    - name: Deploy HA and Keedalived
+      include: Haproxy_Keepalived/deploy.yaml
   
   
