@@ -1,10 +1,10 @@
 ---
 # Keepalived config
 keepalived_bind_interface: eth0
-keepalived_vip: 192.168.2.10
+keepalived_vip: 192.168.2.7
 
 # HAProxy setting
-haproxy_bind_address: 192.168.2.10
+haproxy_bind_address: 192.168.2.7
 haproxy_balancing_servers:
   - { name: 's1', ip: "192.168.2.5" }
   - { name: 's2', ip: "192.168.2.6" }

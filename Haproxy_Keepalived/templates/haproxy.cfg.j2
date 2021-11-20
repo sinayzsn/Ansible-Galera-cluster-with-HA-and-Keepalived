@@ -8,7 +8,7 @@ defaults
     timeout server 50000ms
 
 listen Galera
-    bind *:3306
+    bind {{ haproxy_bind_address }}:3306
     balance source
     mode tcp
     option tcpka
