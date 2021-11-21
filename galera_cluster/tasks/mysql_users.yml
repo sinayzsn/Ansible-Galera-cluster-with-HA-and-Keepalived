@@ -20,3 +20,9 @@
   with_subelements:
     - "{{ (galera_sst_method == 'mariabackup') | ternary( mariadb_mysql_users | union( mariadb_sst_user ), mariadb_mysql_users ) }}"
     - "hosts"
+
+- name: mysql_users | Create haproxy user
+  mysql_user:
+    name: haproxy
+    host: "{{ mariadb_mysql_ha_hosts }}"
+    state: present

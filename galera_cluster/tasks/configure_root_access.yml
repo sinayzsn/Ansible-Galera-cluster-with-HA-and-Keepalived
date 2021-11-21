@@ -44,8 +44,8 @@
   run_once: true
   retries: 6
   delay: 5
-  with_items:
-    - '{{ mariadb_mysql_ha_hosts }}'
+  # with_items:
+  #   - '{{ mariadb_mysql_ha_hosts }}'
   when: galera_allow_root_from_any|bool
   tags:
     - updating_root_passwords
