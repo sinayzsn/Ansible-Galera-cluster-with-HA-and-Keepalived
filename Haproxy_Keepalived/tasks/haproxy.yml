@@ -4,21 +4,18 @@
     name: haproxy
     state: present
   when: ansible_os_family == "Debian"
+
 - name: Ensure HAproxy directories are present
   file: path={{ item }} state=directory
   with_items:
     - "/etc/haproxy"
     - "/var/lib/haproxy"
-# - name: After the ensurence delete the configuration files
-#   file:
-#     path: "{{ item }}"
-#     state: absent
-#   with_item:
-#     - "/etc/haproxy/haproxy.cfg"
+
 - name: Esure that HAproxy files are copied to the correct location
   template:
     src: ../templates/haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
+
 - name: Ensure haproxy is started
   service:
     name: haproxy 
