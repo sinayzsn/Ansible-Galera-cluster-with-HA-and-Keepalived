@@ -23,7 +23,7 @@
  I will go through each one:
  #### Galera clusters
  1. in defaults/main.yml:
-      line 30: Change mysql password from root.
+      *line 30: Change mysql password from root.
       line 96: change the interface name.
       line 107: define the name of the cluster.
       line 155-156: define the user and pass of mariadb_sst_user if enabled.
